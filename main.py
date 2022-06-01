@@ -1,4 +1,6 @@
 #primero hacer un menú
+from ast import Break
+from fileinput import close
 import os
 
 
@@ -12,60 +14,66 @@ def wachStock():
 #Arreglar la repetición ininita del menú y la función wachStock
 def menu ():
     while True:
-        if posibility == 1:
+        print(options)
+        posibility = int(input("Elija una opción: "))
+        if posibility == 0:
             print("Quiere mirar el stock")
             wachStock()
             
-        elif posibility == 2:
+        elif posibility == 1:
             print("Quiere agregar algún produto")
             #addProduct()
             
-        elif posibility == 3:
+        elif posibility == 2:
             print("Mostrar un producto especifico")
             
-        elif posibility == 4:
+        elif posibility == 3:
             print("Desea modificar algún producto")
             
-        elif posibility == 5:
+        elif posibility == 4:
             print("Desea eliminar algún producto")
             
-        elif posibility == 6:
+        elif posibility == 5:
             print("Extraer faltantes")
             
-        elif posibility == 7:
+        elif posibility == 6:
             print("Extraer sobrantes")
             
-        elif posibility == 8:
+        elif posibility == 7:
             print("Mostrar productos por vencer")
             
-        elif posibility == 9:
+        elif posibility == 8:
             print("Cargar las ventas diarias")
             
-        elif posibility == 0:
+        elif posibility == 9:
             print("Cargar las compras diarias")
             
         elif posibility == 10:
             print("Cargar las pérdidas")
-            
+        
+        elif posibility == 11:
+            print("El progama se cerrará inmediatamente")
+            return False
+
         else:
             print("No seleccionó ninguna opción posible")
             
 
 options= """"
 === Menú ===
-1)_ Mirar el stock
-2)_ Agregar algún producto
-3)_ Filtrar producto
-4)_ Modificar producto
-5)_ Eliminar producto
-6)_ Extraer faltante
-7)_ Extraer sobrantes
-8)_ Mostrar productos vencidos
-9)_ Cargar ventas
-10)_ Cargar pérdidas
-0)_ Cargar compras
+0)_ Mirar el stock
+1)_ Agregar algún producto
+2)_ Filtrar producto
+3)_ Modificar producto
+4)_ Eliminar producto
+5)_ Extraer faltante
+6)_ Extraer sobrantes
+7)_ Mostrar productos vencidos
+8)_ Cargar ventas
+9)_ Cargar pérdidas
+10)_ Cargar compras
+11)_ Salir del programa
 """
 
-print(options)
-posibility = int(input("Elija una opción\n"))
+
 posibility = menu()
