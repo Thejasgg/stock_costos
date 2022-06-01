@@ -1,30 +1,55 @@
 #primero hacer un menú
+import os
+
+
+def wachStock():
+    archiveStock = "stock.txt"
+    archive = open(archiveStock, "r")
+    content = archive.read()
+    print(content)
+    archive.close()
+    
+#Arreglar la repetición ininita del menú y la función wachStock
 def menu ():
     while True:
         if posibility == 1:
             print("Quiere mirar el stock")
+            wachStock()
+            
         elif posibility == 2:
             print("Quiere agregar algún produto")
+            #addProduct()
+            
         elif posibility == 3:
             print("Mostrar un producto especifico")
+            
         elif posibility == 4:
             print("Desea modificar algún producto")
+            
         elif posibility == 5:
             print("Desea eliminar algún producto")
+            
         elif posibility == 6:
             print("Extraer faltantes")
+            
         elif posibility == 7:
             print("Extraer sobrantes")
+            
         elif posibility == 8:
             print("Mostrar productos por vencer")
+            
         elif posibility == 9:
             print("Cargar las ventas diarias")
+            
         elif posibility == 0:
             print("Cargar las compras diarias")
+            
         elif posibility == 10:
             print("Cargar las pérdidas")
+            
         else:
             print("No seleccionó ninguna opción posible")
+            
 
 options= """"
 === Menú ===
