@@ -1,17 +1,29 @@
 #primero hacer un menú
-from ast import Break
+from ast import Break, main
 from fileinput import close
 import os
+import pandas as pd
 
 
 def wachStock():
-    archiveStock = "stock.txt"
-    archive = open(archiveStock, "r")
-    content = archive.read()
-    print(content)
-    archive.close()
-    
+    #archiveStock = "Base de datos de stock.csv"
+    #archive = open(archiveStock, "r")
+    #content = archive.read()
+    #print(stock)
+    #archive.close()
+    archive=pd.read_excel('Base de datos de stock.xlsx')
+    print(archive)
+
+def addProduct():
+    print("Se añadirá un producto")
 #Arreglar la repetición ininita del menú y la función wachStock
+
+def filter():
+    print("Se mostrará el producto de acuerdo a su código")
+
+
+
+
 def menu ():
     while True:
         print(options)
@@ -22,11 +34,12 @@ def menu ():
             
         elif posibility == 1:
             print("Quiere agregar algún produto")
-            #addProduct()
+            addProduct()
             
         elif posibility == 2:
             print("Mostrar un producto especifico")
-            
+            filter()
+
         elif posibility == 3:
             print("Desea modificar algún producto")
             
@@ -60,7 +73,7 @@ def menu ():
             
 
 options= """"
-=== Menú ===
+===== Menú =====
 0)_ Mirar el stock
 1)_ Agregar algún producto
 2)_ Filtrar producto
