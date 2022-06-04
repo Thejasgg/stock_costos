@@ -1,5 +1,5 @@
 #primero hacer un menú
-from ast import Break, main
+from ast import Break, Pass, main
 from fileinput import close
 import os
 import pandas as pd
@@ -31,13 +31,79 @@ def addProduct():
     archive = archive.append(newProduct, ignore_index=True)
     print(archive)
 
-#Arreglar la repetición ininita del menú y la función wachStock
+#def cantFilter():
+    #print(numberFilter)
+    #archiveStock = "Base de datos de stock.xlsx"
+    #archive = pd.read_excel(archiveStock)
+    #filterCant = float(input("Escriba el tipo de cantidad que desea filtrar"))
+    #if filterCant == 1:
+       #cantProduct = int(input("Escribe la cantidad del producto"))
+        #archive = archive[archive["cant"]==int(cantProduct)]
+        #print(archive)
+    #elif filterCant == 2:
+        #cantProduct = int(input("Escribe la cantidad del producto"))
+        #archive = archive[archive["cant"]>=int(cantProduct)]
+        #print(archive)
+    #elif filterCant == 3:
+        #cantProduct = int(input("Escribe la cantidad del producto"))
+        #archive = archive[archive["cant"]<=int(cantProduct)]
+        #print(archive)
+    #else:
+        #print("No eligio ninguna de las opciones posibles")
+
+#def tipeFilter():
+    #archiveStock = "Base de datos de stock.xlsx"
+    #archive = pd.read_excel(archiveStock)
+    #fil = int(input("Escriba el identificador del filtro que desea aplicar"))
+    #if fil == 1:
+        #introduceCode = int(input("Escribe el código de un producto"))
+        #archive = archive[archive["code"]==int(introduceCode)]
+        #print(archive)
+    #eliif fil == 2:
+        #nameProduct = str(input("Escribe el nombre de un producto"))
+        #archive = archive[archive["product"]==str(nameProduct)]
+        #print(archive)
+    #eliif fil == 3:
+        #cantFilter()
+    #eliif fil == 4:
+        #costProduct = float(input("Escribe el costo de un producto"))
+        #archive = archive[archive["cost"]==float(costProduct)]
+        #print(archive)
+    #eliif fil == 5:
+        #benefitProduct = float(input("Escribe el beneficio del producto"))
+        #archive = archive[archive["benefit"]==float(benefitProduct)]
+        #print(archive)
+    #eliif fil == 6:
+        #priceProduct = float(input("Escribe el beneficio del producto"))
+        #archive = archive[archive["price"]==float(benefitProduct)]
+        #print(archive)
+    #eliif fil == 7:
+        #line = int(input("Escriba el número de la fila que desea filtrar"))
+        #archive = archive.iloc[int(line)]
+        #print(archive)
+    #elif fil == 8:
+        #column = str(input("Escribe el nombre de la columna que deseas filtrar"))
+        #archive = archive[column]
+    #elif fil == 9:
+        #Pass
+    #else:
+        #Print("Eliga una opción de las disponibles")
 
 def filter():
     print("Se mostrará el producto de acuerdo a su código")
+    archiveStock = "Base de datos de stock.xlsx"
+    archive = pd.read_excel(archiveStock)
+    introduceCode = int(input("Escribe el código de un producto"))
+    archive = archive[archive["code"]==int(introduceCode)]
+    print(archive)
+    #acá se muestra las opciones de filtro y se selecciona la que irá en tipeFilter
+    #print(filterOptions)
+    #tipeFilter()
 
-
-
+def modifi ():
+    archiveStock = "Base de datos de stock.xlsx"
+    archive = pd.read_excel(archiveStock)
+    print("Desea modificar algún producto")
 
 def menu ():
     while True:
@@ -102,6 +168,20 @@ options= """"
 10)_ Cargar compras
 11)_ Salir del programa
 """
-
-
+filterOptions="""
+1)_ Para filtrar de acuerdo al código
+2)_ Para filtrar de acuerdo a el nombre del producto
+3)_ Para filtrar de acuerdo a la cantidad del producto
+4)_ Para filtrar de acuerdo al costo del producto
+5)_ Para filtrar de acuerdo a el beneficio del producto
+6)_ Para filtrar de acuerdo al precio del producto
+7)_ Para filtrar por filas
+8)_ Para filtrar por columnas
+9)_ Terminar el filtrado
+"""
+numberFilter="""
+1)_ Una cantidad exacta
+2)_ Una cantidad minima
+2)_ Una cantidad máxima
+"""
 posibility = menu()
