@@ -1,31 +1,31 @@
-Código	Producto	Inventario	Costo	Precio (contado)
-01	Alfajor Fantoche	20	 $53,85	 $70,00
-02	"Té ""La Virginia"""	209	 $7,69	 $10,00
-03	"Té ""Rosamonte"""	6	 $7,69	 $10,00
-04	"Mate cocido ""El Litoral"""	10	 $3,85	 $5,00
-05	"Galletitas ""Mediatarde"""	5	 $76,92	 $100,00
-06	"Leche ""Ilolay"""	6	 $100,00	 $130,00
-07	"Yerba ""Playadito"""	1	 $230,77	 $300,00
-08	"Galletitas ""Bananitas"""	4	 $100,00	 $130,00
-09	"Galletitas ""Diversión"""	5	 $123,08	 $160,00
-10	"Galletitas ""Vainillas"""	4	 $38,46	 $50,00
-11	"Galletitas ""Miel"""	1	 $76,92	 $100,00
-12	"Galletitas ""Pitusas"""	6	 $53,85	 $70,00
-13	"Galletitas ""Fauna"""	3	 $46,15	 $60,00
-14	"Galletitas ""9 de oro"""	2	 $61,54	 $80,00
-15	"Galletitas ""Don Satur"""	3	 $53,85	 $70,00
-16	"Gelatina ""Bárbara"""	5	 $53,85	 $70,00
-17	"Fideos ""308"""	8	 $46,15	 $60,00
-18	"Arvejas ""Molto"""	2	 $38,46	 $50,00
-19	"Caldito ""Knorr"""	60	 $7,69	 $10,00
-20	"Flan ""Bárbara"""	1	 $30,77	 $40,00
-21	"Saborizante ""Alicante"""	24	 $23,08	 $30,00
-22	"Maquina de afeitar ""Gillette"""	9	 $84,62	 $110,00
-23	"Tostadas ""Manieri"""	2	 $69,23	 $90,00
-24	"Galletitas ""Hojalmar"""	4	 $46,15	 $60,00
-25	"Galletitas pepas ""Cilo"""	2	 $92,31	 $120,00
-26	"Galletitas ""Lenguitas"" coco"	3	 $100,00	 $130,00
-27	"Galletitas ""9 de oro"""	1	 $53,85	 $70,00
-28	Pan rallado	2	 $61,54	 $80,00
-29	"Fideos ""Sol pampero"""	3	 $46,15	 $60,00
-30	"Arroz ""San Salvador""  1kg."	4	 $84,62	 $110,00
+Código	Producto	Inventario	Costo		Precio (contado)
+01	Alfajor Fantoche	20	 $53,85	 	$70,00
+02	Té La Virginia		209	 $7,69	 	$10,00
+03	Té Rosamonte		6	 $7,69	 	$10,00
+04	Mate cocido El Litoral	10	 $3,85	 	$5,00
+05	Galletitas Mediatarde	5	 $76,92	 	$100,00
+06	Leche Ilolay		6	 $100,00$	130,00
+07	Yerba Playadito		1	 $230,77	$300,00
+08	Galletitas Bananitas	4	 $100,00	$130,00
+09	Galletitas Diversión	5	 $123,08	$160,00
+10	Galletitas Vainillas	4	 $38,46	 	$50,00
+11	Galletitas Miel		1	 $76,92	 	$100,00
+12	Galletitas Pitusas	6	 $53,85	 	$70,00
+13	Galletitas Fauna	3	 $46,15	 	$60,00
+14	Galletitas 9 de oro	2	 $61,54	 	$80,00
+15	Galletitas Don Satur	3	 $53,85	 	$70,00
+16	Gelatina Bárbara	5	 $53,85	 	$70,00
+17	Fideos 308		8	 $46,15	 	$60,00
+18	Arvejas Molto		2	 $38,46	 	$50,00
+19	Caldito Knorr		60	 $7,69	 	$10,00
+20	Flan Bárbara		1	 $30,77	 	$40,00
+21	Saborizante Alicante	24	 $23,08	 	$30,00
+22	Afeitadora Gillette	9	 $84,62	 	$110,00
+23	Tostadas Manieri	2	 $69,23	 	$90,00
+24	Galletitas Hojalmar	4	 $46,15	 	$60,00
+25	Galletitas pepas Cilo	2	 $92,31	 	$120,00
+26	Galletitas Lenguitas	3	 $100,00	$130,00
+27	Galletitas 9 de oro	1	 $53,85	 	$70,00
+28	Pan rallado		2	 $61,54	 	$80,00
+29	Fideos Sol pampero	3	 $46,15	 	$60,00
+30	Arroz San Salvador	4	 $84,62	 	$110,00

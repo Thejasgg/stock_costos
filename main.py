@@ -4,18 +4,33 @@ from fileinput import close
 import os
 import pandas as pd
 
-
 def wachStock():
-    #archiveStock = "Base de datos de stock.csv"
+    #archiveStock = "Stock.txt"
     #archive = open(archiveStock, "r")
     #content = archive.read()
-    #print(stock)
+    #print(content)
     #archive.close()
-    archive=pd.read_excel('Base de datos de stock.xlsx')
+    archiveStock = "Base de datos de stock.xlsx"
+    archive = pd.read_excel(archiveStock)
     print(archive)
 
+
 def addProduct():
+    archiveStock = "Base de datos de stock.xlsx"
+    archive = pd.read_excel(archiveStock)
     print("Se añadirá un producto")
+    #archiveStock = "Stock.txt"
+    #archive = open(archiveStock, "w")
+    newProduct = {"code":"","product":"","stock":"","cost":"","benefit":"","income":""}
+    newProduct["code"] = input("Escribe el código del nuevo producto")
+    newProduct["product"] = str(input("Escribe el nombre del producto"))
+    newProduct["stock"] = int(input("Escribe la cantidad del producto"))
+    newProduct["cost"] = float(input("Escribe cual fue el costo del producto"))
+    newProduct["benefit"] = float(input("Escribe cual es el margen de ganancias del producto"))
+    newProduct["income"] = float(input("Escribe cual es el precio del producto"))
+    archive = archive.append(newProduct, ignore_index=True)
+    print(archive)
+
 #Arreglar la repetición ininita del menú y la función wachStock
 
 def filter():
