@@ -37,8 +37,13 @@ def addProduct():
     newProduct["date"] = dateProduct
     archive = archive.append(newProduct, ignore_index=True)
     print(archive)
-    archive.to_excel("base de datos de stock.xlsx")
-
+    print(saveOptios)
+    save = int(input("Elija una opción: "))
+    if save == 1:
+        print("Los cambios se guardarán inmediatamente")
+        archive.to_excel("base de datos de stock.xlsx")
+    elif save == 2:
+        print("No se guardarán los cambios")
 def cantFilter():
     archiveStock = "Base de datos de stock.xlsx"
     archive = pd.read_excel(archiveStock)
@@ -206,5 +211,18 @@ numberFilter="""
 2)_ Una cantidad minima
 3)_ Una cantidad máxima
 4)_ Dejar de filtrar por cantidad
+"""
+optionsModifi="""
+1)_ Modificar el código del producto
+2)_ Modificar el nombre del producto
+3)_ Modificar la cantidad en stock del producto
+4)_ Modificar el costo del producto
+5)_ Modificar el beneficio sobre el producto
+6)_ Modificar el precio del beneficio
+7)_ Modificar la fecha de caducidad de un producto
+"""
+saveOptios="""
+1)_ Guardar
+2)_ Cerrar sin guardar
 """
 posibility = menu()
