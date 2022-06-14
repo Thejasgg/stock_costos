@@ -1,5 +1,6 @@
 #primero hacer un menú
 from ast import Break, Pass, main
+from ctypes.wintypes import BOOLEAN
 from fileinput import close
 import os
 from this import d
@@ -222,17 +223,50 @@ def deleteProduct():
     introduceCode = int(input("Escribe el código del producto a eliminar: "))
     forDelete = archive[archive["code"]==int(introduceCode)].index
     print(forDelete)
-    archive=archive.drop(forDelete)
+    archive = archive.drop(forDelete)
     print(archive)
     save()
 
+#def calculatorMissing(inventary):
+    #inventary = inventary + 3
+    #return inventary
+
 def missing():
-    print("Desea actualizar el stock de acuerdo a los faltantes de productos")
-    
+    archiveStock = "Base de datos de stock.xlsx"
+    archive = pd.read_excel(archiveStock)
+    print("Va a extraer los faltantes")
+    introduceCode = int(input("Escribe el código del producto: "))
+    cantMissing = int(input("Escribe la cantidad de faltante: "))
+    archive.loc[archive["code"]==introduceCode, "inventary"]-= cantMissing
+    #inventary = int(input("Escribe la cantidad que deseas cambiar"))
+    #def calculatorMissing(inventary):
+        #archive.loc[archive["code"]==introduceCode, "inventary"] = inventary - cantMissing
+        #print(archive)
+        #return inventary
+    #inventary = archive["inventary"]
+    #archive["inventary"] = archive["inventary"].apply(calculatorMissing)
+    print(archive)
+    save()
 
 def excess():
+    archiveStock = "Base de datos de stock.xlsx"
+    archive = pd.read_excel(archiveStock)
     print("Desea actualizar el stock con los excedentes de productos")
+    introduceCode = int(input("Escribe el código del producto: "))
+    cantExcess = int(input("Escribe la cantidad de sobrante: "))
+    archive.loc[archive["code"]==introduceCode, "inventary"]+= cantExcess
+    print(archive)
+    save()
 
+
+def expire():
+    print("Productos por expirar en base a una fecha determinada")
+    archiveStock = "Base de datos de stock.xlsx"
+    archive = pd.read_excel(archiveStock)
+    caducatedDate = str(input("Escribe la fecha que considere para tener en cuenta la caducidad: "))
+    dateProduct = datetime.strptime(caducatedDate, "%d/%m/%y")
+    archive = archive.loc[(archive["date"]<=dateProduct)]
+    print(archive)
 
 def menu ():
     while True:
@@ -268,6 +302,7 @@ def menu ():
 
         elif posibility == 7:
             print("Mostrar productos por vencer")
+            expire()
 
         elif posibility == 8:
             print("Cargar las ventas diarias")

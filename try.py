@@ -4,10 +4,16 @@ import pandas as pd
 
 archiveStock = "Base de datos de stock.xlsx"
 archive = pd.read_excel(archiveStock)
-codia=archive[archive["code"]==30].index
-print(codia)
-dele=archive.drop(codia)
-print(dele)
+
+#def calculatorMissing(inventary):
+#    inventary = inventary - 1
+#    return inventary
+
+#archive["inventary"] = archive["inventary"].apply(calculatorMissing)
+archive.loc[archive["code"]==30, "inventary"]+= 1
+
+print(archive)
+
 
 ##d_index = archive.to_dict('index')
 #print(d_index)
