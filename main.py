@@ -18,6 +18,16 @@ def wachStock():
     archive = pd.read_excel(archiveStock)
     print(archive)
 
+def save():
+    archiveStock = "Base de datos de stock.xlsx"
+    archive = pd.read_excel(archiveStock)
+    print(saveOptios)
+    save = int(input("Elija una opción: "))
+    if save == 1:
+        print("Los cambios se guardarán inmediatamente")
+        archive.to_excel("base de datos de stock.xlsx")
+    elif save == 2:
+        print("No se guardarán los cambios")
 
 def addProduct():
     archiveStock = "Base de datos de stock.xlsx"
@@ -37,13 +47,8 @@ def addProduct():
     newProduct["date"] = dateProduct
     archive = archive.append(newProduct, ignore_index=True)
     print(archive)
-    print(saveOptios)
-    save = int(input("Elija una opción: "))
-    if save == 1:
-        print("Los cambios se guardarán inmediatamente")
-        archive.to_excel("base de datos de stock.xlsx")
-    elif save == 2:
-        print("No se guardarán los cambios")
+    save()
+
 def cantFilter():
     archiveStock = "Base de datos de stock.xlsx"
     archive = pd.read_excel(archiveStock)
@@ -126,9 +131,108 @@ def filter():
     #tipeFilter()
 
 def modifi ():
+    #archiveStock = "Base de datos de stock.xlsx"
+    #archive = pd.read_excel(archiveStock)
+    print("Desea modificar algún producto")
+    while True:
+        print(optionsModifi)
+        mod = int(input("Elija una de las opciones de modificar: "))
+        if mod == 1:
+            archiveStock = "Base de datos de stock.xlsx"
+            archive = pd.read_excel(archiveStock)
+            introduceCode = int(input("Escribe el código de un producto: "))
+            newCode = int(input("Escribe el nuevo código: "))
+            archive.loc[archive["code"]==introduceCode, "code"] = int(newCode)
+            print(archive)
+            save()
+            
+        elif mod == 2:
+            archiveStock = "Base de datos de stock.xlsx"
+            archive = pd.read_excel(archiveStock)
+            nameProduct = str(input("Escribe el nombre de un producto: "))
+            print(nameProduct)
+            newNameProduct = str(input("Escribe el nuevo nombre del producto: "))
+            print(newNameProduct)
+            archive.loc[archive["product"]==nameProduct, "product"] = str(newNameProduct)
+            print(archive)
+            save()
+
+        elif mod == 3:
+            archiveStock = "Base de datos de stock.xlsx"
+            archive = pd.read_excel(archiveStock)
+            introduceCode = int(input("Escirbe el código del producto: "))
+            cantProduct = int(input("Escribe la cantidad actual del producto: "))
+            NewCantProduct = int(input("Escribe la nueva cantidad: "))
+            archive.loc[(archive["inventary"]==cantProduct) & (archive["code"]==int(introduceCode)), "inventary"] = int(NewCantProduct)
+            print(archive)
+            save()
+
+        elif mod == 4:
+            archiveStock = "Base de datos de stock.xlsx"
+            archive = pd.read_excel(archiveStock)
+            introduceCode = int(input("Escirbe el código del producto: "))
+            costProduct = float(input("Escribe el costo de un producto: "))
+            newCostProduct = float(input("Escribe el nuevo costo del producto: "))
+            archive.loc[(archive["cost"]==float(costProduct)) & (archive["code"]==int(introduceCode)), "cost"] = float(newCostProduct)
+            print(archive)
+            save()
+        
+        elif mod == 5:
+            archiveStock = "Base de datos de stock.xlsx"
+            archive = pd.read_excel(archiveStock)
+            introduceCode = int(input("Escirbe el código del producto: "))
+            benefitProduct = float(input("Escribe el beneficio del producto: "))
+            newBenefitProduct = float(input("Escribe el nuevo benedifio del producto: "))
+            archive.loc[(archive["benefit"]==float(benefitProduct)) & (archive["code"]==int(introduceCode)), "benefit"] = float(newBenefitProduct)
+            print(archive)
+            save()
+        
+        elif mod == 6:
+            archiveStock = "Base de datos de stock.xlsx"
+            archive = pd.read_excel(archiveStock)
+            introduceCode = int(input("Escirbe el código del producto: "))
+            priceProduct = float(input("Escribe el beneficio del producto: "))
+            newPriceProduct = float(input("Escribe el nuevo beneficio: "))
+            archive.loc[(archive["price"]==float(priceProduct)) & (archive["code"]==int(introduceCode)), "price"] = float(newPriceProduct)
+            print(archive)
+            save()
+
+        elif mod == 7:
+            archiveStock = "Base de datos de stock.xlsx"
+            archive = pd.read_excel(archiveStock)
+            introduceCode = int(input("Escirbe el código del producto: "))
+            caducatedDate = str(input("Escribe la fecha de caducidad: "))
+            dateProduct = datetime.strptime(caducatedDate, "%d/%m/%y")
+            newCaducatedDate = str(input("Escribe la nueva fecha de caducidad: "))
+            newDateProduct = datetime.strptime(newCaducatedDate, "%d/%m/%y")
+            archive.loc[(archive["date"]==dateProduct) & (archive["code"]==int(introduceCode)), "date"] = newDateProduct
+            print(archive)
+            save()
+        
+        elif mod == 8:
+            return False
+        
+        else:
+            print("Eliga una opción de las disponibles")
+
+def deleteProduct():
+    print("Desea eliminar un producto")
     archiveStock = "Base de datos de stock.xlsx"
     archive = pd.read_excel(archiveStock)
-    print("Desea modificar algún producto")
+    introduceCode = int(input("Escribe el código del producto a eliminar: "))
+    forDelete = archive[archive["code"]==int(introduceCode)].index
+    print(forDelete)
+    archive=archive.drop(forDelete)
+    print(archive)
+    save()
+
+def missing():
+    print("Desea actualizar el stock de acuerdo a los faltantes de productos")
+    
+
+def excess():
+    print("Desea actualizar el stock con los excedentes de productos")
+
 
 def menu ():
     while True:
@@ -152,13 +256,16 @@ def menu ():
             
         elif posibility == 4:
             print("Desea eliminar algún producto")
-            
+            deleteProduct()
+
         elif posibility == 5:
             print("Extraer faltantes")
-            
+            missing()
+
         elif posibility == 6:
             print("Extraer sobrantes")
-            
+            excess()
+
         elif posibility == 7:
             print("Mostrar productos por vencer")
 
@@ -220,6 +327,7 @@ optionsModifi="""
 5)_ Modificar el beneficio sobre el producto
 6)_ Modificar el precio del beneficio
 7)_ Modificar la fecha de caducidad de un producto
+8)_ Dejar de modificar
 """
 saveOptios="""
 1)_ Guardar

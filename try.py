@@ -4,7 +4,13 @@ import pandas as pd
 
 archiveStock = "Base de datos de stock.xlsx"
 archive = pd.read_excel(archiveStock)
-print(archive)
+codia=archive[archive["code"]==30].index
+print(codia)
+dele=archive.drop(codia)
+print(dele)
+
+##d_index = archive.to_dict('index')
+#print(d_index)
 #Sirve para filtrar el contenido de una columna
 #archive = archive["price"] 
 
@@ -35,10 +41,10 @@ print(archive)
 #archive = archive[archive["product"]==str(introduceCode)]
 #line = int(input("Escriba el número de la fila que desea filtrar"))
 #archive = archive.iloc[int(line)]
-column = str(input("Escribe el nombre de la columna que deseas filtrar"))
-archive = archive[column]
-#def calculatorBenefit ():
-    #moneyBenefit = ("price" - "cost") * "cant sells"
-    #print(moneyBenefit)
+# column = str(input("Escribe el nombre de la columna que deseas filtrar"))
+# archive = archive[column]
+# #def calculatorBenefit ():
+#     #moneyBenefit = ("price" - "cost") * "cant sells"
+#     #print(moneyBenefit)
 
-print(archive)
+# print(archive)
