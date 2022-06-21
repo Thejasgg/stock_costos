@@ -11,7 +11,7 @@ def wachStock():
     archiveStock = "Base de datos de stock.xlsx"
     archive = pd.read_excel(archiveStock)
     print(archive)
-
+#Todo: Las función de guardado, no es usable (no se el motivo)
 def save():
     archiveStock = "Base de datos de stock.xlsx"
     archive = pd.read_excel(archiveStock)
@@ -19,7 +19,7 @@ def save():
     save = int(input("Elija una opción: "))
     if save == 1:
         print("Los cambios se guardarán inmediatamente")
-        archive.to_excel("base de datos de stock.xlsx")
+        archive.to_excel("Base de datos de stock.xlsx")
     elif save == 2:
         print("No se guardarán los cambios")
 
@@ -79,7 +79,6 @@ def addProduct():
     caducatedDate = str(input("Escribe la fecha de caducidad: "))
     dateProduct = datetime.strptime(caducatedDate, "%d/%m/%y")
     newProduct["date"] = dateProduct
-    #ataProduct = pd.DataFrame.from_dict(newProduct)
     archive = archive.append(newProduct, ignore_index=True)
     print(archive)
     save()
@@ -300,7 +299,7 @@ def sales():
     dataSales = pd.DataFrame.from_dict(sales)
     archiveSales = archiveSales.append(dataSales, ignore_index=True)
     archive.loc[archive["code"]==introduceCode, "inventary"]-= sales["Cant"]
-    archive.to_excel("base de datos de stock.xlsx")
+    archive.to_excel("Base de datos de stock.xlsx")
     saveSales()
 
 def buy():
@@ -329,7 +328,7 @@ def buy():
     archive.loc[archive["code"]==introduceCode, "inventary"]+= buys["Cant"]
     archive.loc[archive["code"]==introduceCode, "cost"]= buys["Cost"]
     archive.loc[archive["code"]==introduceCode, "benefit"]= newBenefit
-    archive.to_excel("base de datos de stock.xlsx")
+    archive.to_excel("Base de datos de stock.xlsx")
     saveBuy()
     
 def losses():
@@ -351,7 +350,7 @@ def losses():
     archiveLosses = archiveLosses.append(dataLosses, ignore_index=True)
     print(dataLosses)
     archive.loc[archive["code"]==introduceCode, "inventary"]-= losses["Cant"]
-    archive.to_excel("base de datos de stock.xlsx")
+    archive.to_excel("Base de datos de stock.xlsx")
     saveLosses()
 
 def menu():
