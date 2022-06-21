@@ -1,4 +1,3 @@
-#primero hacer un menú
 from ast import Break, Pass, main
 from ctypes.wintypes import BOOLEAN
 from fileinput import close
@@ -8,13 +7,7 @@ from numpy import datetime_data
 import pandas as pd
 from datetime import date, time, datetime
 
-
 def wachStock():
-    #archiveStock = "Stock.txt"
-    #archive = open(archiveStock, "r")
-    #content = archive.read()
-    #print(content)
-    #archive.close()
     archiveStock = "Base de datos de stock.xlsx"
     archive = pd.read_excel(archiveStock)
     print(archive)
@@ -38,7 +31,9 @@ def saveSales():
     if save == 1:
         print("Los cambios se guardarán inmediatamente")
         archiveSales.to_excel("Ventas.xlsx")
-        save()
+        #archiveStock = "Base de datos de stock.xlsx"
+        #archive = pd.read_excel(archiveStock)
+        #archive.to_excel("base de datos de stock.xlsx")
     elif save == 2:
         print("No se guardarán los cambios")
 
@@ -50,7 +45,9 @@ def saveBuy():
     if save == 1:
         print("Los cambios se guardarán inmediatamente")
         archiveBuy.to_excel("Compras.xlsx")
-        save()
+        #archiveStock = "Base de datos de stock.xlsx"
+        #archive = pd.read_excel(archiveStock)
+        #archive.to_excel("base de datos de stock.xlsx")
     elif save == 2:
         print("No se guardarán los cambios")
 
@@ -62,7 +59,9 @@ def saveLosses():
     if save == 1:
         print("Los cambios se guardarán inmediatamente")
         archiveLosses.to_excel("Perdidas.xlsx")
-        save()
+        #archiveStock = "Base de datos de stock.xlsx"
+        #archive = pd.read_excel(archiveStock)
+        #archive.to_excel("base de datos de stock.xlsx")
     elif save == 2:
         print("No se guardarán los cambios")
 
@@ -154,17 +153,6 @@ def filter():
             return False
         else:
             print("Eliga una opción de las disponibles")
-
-#def filter():
-    #print("Se mostrará el producto de acuerdo a su código")
-    #archiveStock = "Base de datos de stock.xlsx"
-    #archive = pd.read_excel(archiveStock)
-    #introduceCode = int(input("Escribe el código de un producto: "))
-    #archive = archive[archive["code"]==int(introduceCode)]
-    #print(archive)
-    #acá se muestra las opciones de filtro y se selecciona la que irá en tipeFilter
-    #print(filterOptions)
-    #tipeFilter()
 
 def modifi ():
     print("Desea modificar algún producto")
@@ -311,8 +299,8 @@ def sales():
     print(sales)
     dataSales = pd.DataFrame.from_dict(sales)
     archiveSales = archiveSales.append(dataSales, ignore_index=True)
-    print(archiveSales)
     archive.loc[archive["code"]==introduceCode, "inventary"]-= sales["Cant"]
+    archive.to_excel("base de datos de stock.xlsx")
     saveSales()
 
 def buy():
@@ -321,7 +309,7 @@ def buy():
     archive = pd.read_excel(archiveStock)
     archiveForBuy = "Ventas.xlsx"
     archiveBuy = pd.read_excel(archiveForBuy)
-    buys = {"Date" : "", "Code": "","Product": "","Cant": "", "Cost": ""}
+    buys = {"Date" : "", "Code": "","Product": "","Cant": "", "Cost": "", "Price": ""}
     introduceCode = int(input("Escribe el código de un producto: "))
     code = archive.loc[archive["code"]==introduceCode]
     dateToday = datetime.now()
@@ -331,14 +319,17 @@ def buy():
     buys["Product"] = code["product"]
     buys["Cant"] = int(input("Escriba la cantidad que ha adquirido: "))
     buys["Cost"] = float(input("Escribe el costo unitario: "))
+    buys["Price"] = int(input("Escriba el nuevo precio: "))
+    newBenefit = buys["Price"] - buys["Cost"]
     dataBuy = pd.DataFrame.from_dict(buys)
     archiveBuy = archiveBuy.append(dataBuy, ignore_index=True)
     print(dataBuy)
     archiveForBuy = "Compras.xlsx"
     archiveBuy = pd.read_excel(archiveForBuy)
-    print(archiveBuy)
     archive.loc[archive["code"]==introduceCode, "inventary"]+= buys["Cant"]
     archive.loc[archive["code"]==introduceCode, "cost"]= buys["Cost"]
+    archive.loc[archive["code"]==introduceCode, "benefit"]= newBenefit
+    archive.to_excel("base de datos de stock.xlsx")
     saveBuy()
     
 def losses():
@@ -360,6 +351,7 @@ def losses():
     archiveLosses = archiveLosses.append(dataLosses, ignore_index=True)
     print(dataLosses)
     archive.loc[archive["code"]==introduceCode, "inventary"]-= losses["Cant"]
+    archive.to_excel("base de datos de stock.xlsx")
     saveLosses()
 
 def menu():
@@ -368,16 +360,13 @@ def menu():
         posibility = int(input("Elija una opción: "))
         if posibility == 0:
             print("Quiere mirar el stock")
-            wachStock()
-            
+            wachStock()       
         elif posibility == 1:
             print("Quiere agregar algún produto")
             addProduct()
-            
         elif posibility == 2:
-            print("Mostrar un producto especifico")
+            print("Filtrar por producto especifico")
             filter()
-
         elif posibility == 3:
             print("Desea modificar algún producto")
             modifi()
@@ -417,7 +406,6 @@ def menu():
         else:
             print("No seleccionó ninguna opción posible")
             
-
 options= """"
 ===== Menú =====
 0)_ Mirar el stock
