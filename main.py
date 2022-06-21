@@ -470,4 +470,4 @@ forProducts="""
 2)_ No añadir más productos
 3)_ Salir del programa
 """
-posibility = menu()
+menu()
