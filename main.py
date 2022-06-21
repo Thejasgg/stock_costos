@@ -30,13 +30,47 @@ def save():
     elif save == 2:
         print("No se guardarán los cambios")
 
+def saveSales():
+    archiveForSales = "Ventas.xlsx"
+    archiveSales = pd.read_excel(archiveForSales)
+    print(saveOptios)
+    save = int(input("Elija una opción: "))
+    if save == 1:
+        print("Los cambios se guardarán inmediatamente")
+        archiveSales.to_excel("Ventas.xlsx")
+        save()
+    elif save == 2:
+        print("No se guardarán los cambios")
+
+def saveBuy():
+    archiveForBuy = "Compras.xlsx"
+    archiveBuy = pd.read_excel(archiveForBuy)
+    print(saveOptios)
+    save = int(input("Elija una opción: "))
+    if save == 1:
+        print("Los cambios se guardarán inmediatamente")
+        archiveBuy.to_excel("Compras.xlsx")
+        save()
+    elif save == 2:
+        print("No se guardarán los cambios")
+
+def saveLosses():
+    archiveForLosses = "Perdidas.xlsx"
+    archiveLosses = pd.read_excel(archiveForLosses)
+    print(saveOptios)
+    save = int(input("Elija una opción: "))
+    if save == 1:
+        print("Los cambios se guardarán inmediatamente")
+        archiveLosses.to_excel("Perdidas.xlsx")
+        save()
+    elif save == 2:
+        print("No se guardarán los cambios")
+
 def addProduct():
     archiveStock = "Base de datos de stock.xlsx"
     archive = pd.read_excel(archiveStock)
     print("Se añadirá un producto")
-    #archiveStock = "Stock.txt"
-    #archive = open(archiveStock, "w")
-    newProduct = {"code":"","product":"","stock":"","cost":"","benefit":"","income":"","date":""}
+    newProduct = {"code":"","product":"","cost":"","benefit":"","date":""}
     newProduct["code"] = input("Escribe el código del nuevo producto: ")
     newProduct["product"] = str(input("Escribe el nombre del producto: "))
     newProduct["inventary"] = int(input("Escribe la cantidad del producto: "))
@@ -46,6 +80,7 @@ def addProduct():
     caducatedDate = str(input("Escribe la fecha de caducidad: "))
     dateProduct = datetime.strptime(caducatedDate, "%d/%m/%y")
     newProduct["date"] = dateProduct
+    #ataProduct = pd.DataFrame.from_dict(newProduct)
     archive = archive.append(newProduct, ignore_index=True)
     print(archive)
     save()
@@ -132,8 +167,6 @@ def filter():
     #tipeFilter()
 
 def modifi ():
-    #archiveStock = "Base de datos de stock.xlsx"
-    #archive = pd.read_excel(archiveStock)
     print("Desea modificar algún producto")
     while True:
         print(optionsModifi)
@@ -227,10 +260,6 @@ def deleteProduct():
     print(archive)
     save()
 
-#def calculatorMissing(inventary):
-    #inventary = inventary + 3
-    #return inventary
-
 def missing():
     archiveStock = "Base de datos de stock.xlsx"
     archive = pd.read_excel(archiveStock)
@@ -238,13 +267,6 @@ def missing():
     introduceCode = int(input("Escribe el código del producto: "))
     cantMissing = int(input("Escribe la cantidad de faltante: "))
     archive.loc[archive["code"]==introduceCode, "inventary"]-= cantMissing
-    #inventary = int(input("Escribe la cantidad que deseas cambiar"))
-    #def calculatorMissing(inventary):
-        #archive.loc[archive["code"]==introduceCode, "inventary"] = inventary - cantMissing
-        #print(archive)
-        #return inventary
-    #inventary = archive["inventary"]
-    #archive["inventary"] = archive["inventary"].apply(calculatorMissing)
     print(archive)
     save()
 
@@ -258,7 +280,6 @@ def excess():
     print(archive)
     save()
 
-
 def expire():
     print("Productos por expirar en base a una fecha determinada")
     archiveStock = "Base de datos de stock.xlsx"
@@ -268,7 +289,80 @@ def expire():
     archive = archive.loc[(archive["date"]<=dateProduct)]
     print(archive)
 
-def menu ():
+def sales():
+    archiveStock = "Base de datos de stock.xlsx"
+    archive = pd.read_excel(archiveStock)
+    archiveForSales = "Ventas.xlsx"
+    archiveSales = pd.read_excel(archiveForSales)
+    introduceCode = int(input("Escribe el código de un producto: "))
+    sales = {"date" : "", "Code": "","Product": "","Cant": "", "Cost": "","Price": "", "Ingres": "","Total Cost": "", "Benefits": ""}
+    code = archive.loc[archive["code"]==introduceCode]
+    dateToday = datetime.now()
+    dateToday = dateToday.strftime("%d/%m/%Y")
+    sales["Date"]= dateToday
+    sales["Code"] = introduceCode
+    sales["Product"] = code["product"]
+    sales["Cant"] = int(input("Escribe la cantidad del producto: "))
+    sales["Cost"] = code["cost"]
+    sales["Price"] = code["price"]
+    sales["Ingres"] = sales["Cant"] * sales["Price"]
+    sales["Total Cost"] = sales["Cant"] * sales["Cost"]
+    sales["Benefits"] = sales["Ingres"] - (sales["Cost"] * sales["Cant"])
+    print(sales)
+    dataSales = pd.DataFrame.from_dict(sales)
+    archiveSales = archiveSales.append(dataSales, ignore_index=True)
+    print(archiveSales)
+    archive.loc[archive["code"]==introduceCode, "inventary"]-= sales["Cant"]
+    saveSales()
+
+def buy():
+    print("Compró algún producto")
+    archiveStock = "Base de datos de stock.xlsx"
+    archive = pd.read_excel(archiveStock)
+    archiveForBuy = "Ventas.xlsx"
+    archiveBuy = pd.read_excel(archiveForBuy)
+    buys = {"Date" : "", "Code": "","Product": "","Cant": "", "Cost": ""}
+    introduceCode = int(input("Escribe el código de un producto: "))
+    code = archive.loc[archive["code"]==introduceCode]
+    dateToday = datetime.now()
+    dateToday = dateToday.strftime("%d/%m/%Y")
+    buys["Date"]= dateToday
+    buys["Code"] = introduceCode
+    buys["Product"] = code["product"]
+    buys["Cant"] = int(input("Escriba la cantidad que ha adquirido: "))
+    buys["Cost"] = float(input("Escribe el costo unitario: "))
+    dataBuy = pd.DataFrame.from_dict(buys)
+    archiveBuy = archiveBuy.append(dataBuy, ignore_index=True)
+    print(dataBuy)
+    archiveForBuy = "Compras.xlsx"
+    archiveBuy = pd.read_excel(archiveForBuy)
+    print(archiveBuy)
+    archive.loc[archive["code"]==introduceCode, "inventary"]+= buys["Cant"]
+    archive.loc[archive["code"]==introduceCode, "cost"]= buys["Cost"]
+    saveBuy()
+    
+def losses():
+    losses = {"date" : "", "Code": "","Product": "","Cant": ""}
+    print(losses)
+    archiveStock = "Base de datos de stock.xlsx"
+    archive = pd.read_excel(archiveStock)
+    archiveForLosses = "Perdidas.xlsx"
+    archiveLosses = pd.read_excel(archiveForLosses)
+    introduceCode = int(input("Escribe el código de un producto: "))
+    code = archive.loc[archive["code"]==introduceCode]
+    dateToday = datetime.now()
+    dateToday = dateToday.strftime("%d/%m/%Y")
+    losses["Date"]= dateToday
+    losses["Code"] = introduceCode
+    losses["Product"] = code["product"]
+    losses["Cant"] = int(input("Escribe la cantidad del producto que se perdió: "))
+    dataLosses = pd.DataFrame.from_dict(losses)
+    archiveLosses = archiveLosses.append(dataLosses, ignore_index=True)
+    print(dataLosses)
+    archive.loc[archive["code"]==introduceCode, "inventary"]-= losses["Cant"]
+    saveLosses()
+
+def menu():
     while True:
         print(options)
         posibility = int(input("Elija una opción: "))
@@ -306,13 +400,16 @@ def menu ():
 
         elif posibility == 8:
             print("Cargar las ventas diarias")
-            
+            sales()
+
         elif posibility == 9:
             print("Cargar las compras diarias")
-            
+            buy()
+
         elif posibility == 10:
             print("Cargar las pérdidas")
-        
+            losses()
+
         elif posibility == 11:
             print("El progama se cerrará inmediatamente")
             return False
@@ -332,8 +429,8 @@ options= """"
 6)_ Extraer sobrantes
 7)_ Mostrar productos vencidos
 8)_ Cargar ventas
-9)_ Cargar pérdidas
-10)_ Cargar compras
+9)_ Cargar compras
+10)_ Cargar pérdidas
 11)_ Salir del programa
 """
 filterOptions="""
@@ -367,5 +464,10 @@ optionsModifi="""
 saveOptios="""
 1)_ Guardar
 2)_ Cerrar sin guardar
+"""
+forProducts="""
+1)_ Añadir más productos
+2)_ No añadir más productos
+3)_ Salir del programa
 """
 posibility = menu()
