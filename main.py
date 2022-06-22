@@ -11,7 +11,7 @@ def wachStock():
     archiveStock = "Base de datos de stock.xlsx"
     archive = pd.read_excel(archiveStock)
     print(archive)
-#Todo: Las función de guardado, no es usable (no se el motivo)
+
 def save():
     archiveStock = "Base de datos de stock.xlsx"
     archive = pd.read_excel(archiveStock)
@@ -22,51 +22,6 @@ def save():
         archive.to_excel("Base de datos de stock.xlsx")
     elif save == 2:
         print("No se guardarán los cambios")
-
-# def saveSales():
-#     archiveForSales = "Ventas.xlsx"
-#     archiveSales = pd.read_excel(archiveForSales)
-#     print(archiveSales)
-#     print(saveOptios)
-#     save = int(input("Elija una opción: "))
-#     if save == 1:
-#         print("Los cambios se guardarán inmediatamente")
-#         archiveSales.to_excel("Ventas.xlsx")
-#         archiveStock = "Base de datos de stock.xlsx"
-#         archive = pd.read_excel(archiveStock)
-#         archive.to_excel("Base de datos de stock.xlsx")
-#     elif save == 2:
-#         print("No se guardarán los cambios")
-
-# def saveBuy():
-#     archiveForBuy = "Compras.xlsx"
-#     archiveBuy = pd.read_excel(archiveForBuy)
-#     print(saveOptios)
-#     save = int(input("Elija una opción: "))
-#     if save == 1:
-#         print("Los cambios se guardarán inmediatamente")
-#         archiveBuy.to_excel("Compras.xlsx")
-#         #save()
-#         archiveStock = "Base de datos de stock.xlsx"
-#         archive = pd.read_excel(archiveStock)
-#         archive.to_excel("Base de datos de stock.xlsx")
-#     elif save == 2:
-#         print("No se guardarán los cambios")
-
-# def saveLosses():
-#     archiveForLosses = "Perdidas.xlsx"
-#     archiveLosses = pd.read_excel(archiveForLosses)
-#     print(saveOptios)
-#     save = int(input("Elija una opción: "))
-#     if save == 1:
-#         print("Los cambios se guardarán inmediatamente")
-#         archiveLosses.to_excel("Perdidas.xlsx")
-#         #save()
-#         archiveStock = "Base de datos de stock.xlsx"
-#         archive = pd.read_excel(archiveStock)
-#         archive.to_excel("Base de datos de stock.xlsx")
-#     elif save == 2:
-#         print("No se guardarán los cambios")
 
 def addProduct():
     archiveStock = "Base de datos de stock.xlsx"
